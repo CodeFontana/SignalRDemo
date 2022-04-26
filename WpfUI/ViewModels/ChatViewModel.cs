@@ -10,6 +10,10 @@ public class ChatViewModel : ViewModelBase
 {
     public ChatViewModel()
     {
+        IsConnected = false;
+        Messages = new();
+        Message = "";
+
         _chatHub = new HubConnectionBuilder()
             .WithUrl(ServerAddress)
             .WithAutomaticReconnect()
@@ -34,9 +38,6 @@ public class ChatViewModel : ViewModelBase
             return Task.CompletedTask;
         };
 
-        IsConnected = false;
-        Messages = new();
-        Message = "";
         ConnectChatHubCommand = new ConnectChatHubCommand(this);
         SendMessageCommand = new SendMessageCommand(this);
     }
