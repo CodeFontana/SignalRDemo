@@ -1,0 +1,45 @@
+﻿@page "/"
+
+<PageTitle>BlazorServerUI</PageTitle>
+
+<MudContainer>
+    <EditForm Model="@_message" OnValidSubmit="SendMessageAsync">
+        <DataAnnotationsValidator />
+        <MudGrid Justify="Justify.Center">
+            <MudItem xs="12" sm="7">
+                <MudCard>
+                    <MudCardContent>
+                        <MudTextField Label="Username" HelperText="Username"
+                                      @bind-Value="_message.User" For="@(() => _message.User)" />
+                        <MudTextField Label="Message" Class="mt-3"
+                                      @bind-Value="_message.Message" For="@(() => _message.Message)" />
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Class="ml-auto"
+                                   ButtonType="ButtonType.Submit"
+                                   Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   Disabled="@(_chatHub?.State != HubConnectionState.Connected)">
+                            Send
+                        </MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+
+    <MudDivider Class="my-10" />
+
+    @if (_messages.Count > 0)
+    {
+        <MudPaper>
+            <MudList>
+                @foreach (string msg in _messages)
+                {
+                    <MudListItem Text=@msg />
+                }
+            </MudList>
+        </MudPaper>
+    }
+
+</MudContainer>
