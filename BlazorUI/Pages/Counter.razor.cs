@@ -24,7 +24,8 @@ public partial class Counter : IAsyncDisposable
 
     private void CounterIncrement(string user, int value)
     {
-        _currentCount += 1;
+        _currentCount += value;
+        InvokeAsync(StateHasChanged);
     }
 
     public async ValueTask DisposeAsync()
