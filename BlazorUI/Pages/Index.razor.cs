@@ -42,8 +42,7 @@ public partial class Index : IAsyncDisposable
         if (_chatHub is not null)
         {
             await _chatHub.SendAsync("SendMessage", _message.User, _message.Message);
-            _message.Message = "";
-            StateHasChanged();
+            _message = new();
         }
     }
 
