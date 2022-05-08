@@ -1,8 +1,10 @@
 ﻿@page "/"
 
-<PageTitle>BlazorServerUI</PageTitle>
+<PageTitle>ChatHub</PageTitle>
 
-<MudContainer>
+<MudText Typo="Typo.h2" Align="Align.Center">Chat Hub</MudText>
+
+<MudContainer Class="mt-10">
     <EditForm Model="@_message" OnValidSubmit="SendMessageAsync">
         <DataAnnotationsValidator />
         <MudGrid Justify="Justify.Center">
