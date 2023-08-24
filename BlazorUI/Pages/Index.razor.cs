@@ -34,7 +34,7 @@ public partial class Index : IAsyncDisposable
     {
         string formattedMessage = $"{user}: {message}";
         _messages.Add(formattedMessage);
-        StateHasChanged();
+        InvokeAsync(() => StateHasChanged());
     }
 
     private async Task SendMessageAsync()

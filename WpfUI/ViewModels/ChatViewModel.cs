@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WpfUI.Commands;
 
@@ -113,6 +114,9 @@ public class ChatViewModel : ViewModelBase
     public void ReceiveMessage(string user, string message)
     {
         string formattedMessage = $"{user}: {message}";
-        Messages.Add(formattedMessage);
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            Messages.Add(formattedMessage);
+        });
     }
 }
